@@ -1,7 +1,6 @@
 databases:
   - name: smart-trip-planner-db
     databaseName: aitripplanner
-    user: postgres
     plan: free
 
 services:
