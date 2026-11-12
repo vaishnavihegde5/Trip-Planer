@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
   try {
     const body = await parseJsonBody(req);
     const schedule = body.schedule || [];
-    res.status(200).json({ schedule: applyRainyDay(schedule) });
+    res.status(200).json({ schedule: applyRainyDay(schedule, body.city) });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

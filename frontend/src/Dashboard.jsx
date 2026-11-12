@@ -6,7 +6,7 @@ import { ArrowLeft, MapPin, Trash2, LogOut, ExternalLink } from 'lucide-react';
 function Dashboard() {
   const [itineraries, setItineraries] = useState([]);
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem('user'));
+  const [user] = useState(() => JSON.parse(localStorage.getItem('user')));
 
   useEffect(() => {
     if (!user) {

@@ -1,50 +1,40 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Map, Compass, Calendar, ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, CloudRain, Compass, MapPin, Sun } from 'lucide-react';
+import { mapsSearch } from './maps';
+import jaipur from './assets/jaipur.webp';
 
-function Home() {
-  const navigate = useNavigate();
-
-  return (
-    <div className="app-container">
-      <motion.div 
-        className="glass-card"
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
-        style={{ textAlign: 'center', maxWidth: '800px', padding: '4rem 2rem' }}
-      >
-        <motion.div 
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
-        >
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginBottom: '2rem' }}>
-            <Map size={48} color="#ea580c" />
-            <Compass size={48} color="#ea580c" />
-            <Calendar size={48} color="#ea580c" />
+export default function Home() {
+  const [rain, setRain] = useState(false);
+  const signedIn = Boolean(localStorage.getItem('user'));
+  const stops = [
+    ['08:00', rain ? 'Albert Hall Museum' : 'Amber Fort'],
+    ['10:00', 'Tapri Central'],
+    ['12:00', rain ? 'City Palace Museum' : 'Jal Mahal'],
+  ];
+  return <main className="travel-home">
+    <header className="masthead">
+      <span className="wordmark"><Compass aria-hidden="true"/> Smart Trip Planner</span>
+      <Link to={signedIn ? '/dashboard' : '/login'}>{signedIn ? 'My trips' : 'Sign in'} <ArrowRight size={16}/></Link>
+    </header>
+    <section className="cover">
+      <div className="cover-copy">
+        <h1>Your trip,<br/><em>at your pace.</em></h1>
+        <p>Build a day around the places you love. Move stops as you go, or switch to an indoor itinerary when the rain rolls in.</p>
+        <Link className="cover-action" to={signedIn ? '/plan' : '/login'}>Plan my trip <ArrowRight size={18}/></Link>
+      </div>
+      <article className="sample">
+        <div className="sample-photo">
+          <img src={jaipur} alt="Amber Fort overlooking the lake in Jaipur"/>
+          <div><small><MapPin size={14}/> Rajasthan, India</small><h2>Jaipur</h2></div>
+        </div>
+        <div className="sample-body">
+          <div className="sample-heading"><h3>Sample itinerary</h3>
+            <button className="weather-chip" aria-pressed={rain} onClick={() => setRain(!rain)}>{rain ? <CloudRain size={15}/> : <Sun size={15}/>} Rainy Day <i/></button>
           </div>
-          
-          <h1 className="title" style={{ fontSize: '3.5rem', marginBottom: '1rem', lineHeight: '1.2' }}>
-            Smart Trip Planner
-          </h1>
-          
-          <p className="subtitle" style={{ fontSize: '1.3rem', marginBottom: '3rem', maxWidth: '600px', margin: '0 auto 3rem auto', opacity: 0.8 }}>
-            Discover, plan, and organize your next adventure effortlessly with our intelligent AI-driven travel companion.
-          </p>
-
-          <button 
-            className="btn" 
-            style={{ fontSize: '1.2rem', padding: '16px 40px', borderRadius: '50px' }}
-            onClick={() => navigate('/login')}
-          >
-            Get Started <ArrowRight size={20} />
-          </button>
-        </motion.div>
-      </motion.div>
-    </div>
-  );
+          <ol className="sample-stops" aria-live="polite">{stops.map(([time, place]) => <li key={time}><time>{time}</time><a href={mapsSearch(place, 'Jaipur')} target="_blank" rel="noreferrer" aria-label={`Find ${place} on Google Maps`}>{place}<MapPin size={14}/></a></li>)}</ol>
+        </div>
+      </article>
+    </section>
+  </main>;
 }
-
-export default Home;

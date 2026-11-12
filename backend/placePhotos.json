@@ -1,0 +1,82 @@
+{
+  "Hawa Mahal": {
+    "imageUrl": "/places/hawa-mahal.webp",
+    "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:East_facade_Hawa_Mahal_Jaipur_from_ground_level_%28July_2022%29_-_img_01.jpg",
+    "aboutUrl": "https://en.wikipedia.org/wiki/Hawa_Mahal"
+  },
+  "Amer Fort": {
+    "imageUrl": "/places/amer-fort.webp",
+    "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:20191219_Fort_Amber%2C_Amer%2C_Jaipur_0955_9481.jpg",
+    "aboutUrl": "https://en.wikipedia.org/wiki/Amber_Fort"
+  },
+  "Jal Mahal": {
+    "imageUrl": "/places/jal-mahal.webp",
+    "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Jaipur_03-2016_39_Jal_Mahal_-_Water_Palace.jpg",
+    "aboutUrl": "https://en.wikipedia.org/wiki/Jal_Mahal"
+  },
+  "Albert Hall Museum": {
+    "imageUrl": "/places/albert-hall-museum.webp",
+    "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Albert_Hall_%28_Jaipur_%29.jpg",
+    "aboutUrl": "https://en.wikipedia.org/wiki/Albert_Hall_Museum"
+  },
+  "City Palace Museum": {
+    "imageUrl": "/places/city-palace-museum.webp",
+    "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Chandra_Mahal%2C_City_Palace%2C_Jaipur%2C_20191218_0951_9043.jpg",
+    "aboutUrl": "https://en.wikipedia.org/wiki/City_Palace%2C_Jaipur"
+  },
+  "Anokhi Museum of Hand Printing": {
+    "imageUrl": "/places/anokhi-museum-of-hand-printing.webp",
+    "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Anokhi_Museum.jpg",
+    "aboutUrl": "https://en.wikipedia.org/wiki/Anokhi_Museum_of_Hand_Printing"
+  },
+  "Gateway of India": {
+    "imageUrl": "/places/gateway-of-india.webp",
+    "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Mumbai_03-2016_30_Gateway_of_India.jpg",
+    "aboutUrl": "https://en.wikipedia.org/wiki/Gateway_of_India"
+  },
+  "Bandra Fort": {
+    "imageUrl": "/places/bandra-fort.webp",
+    "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Bandra-fort-mumbai.jpg",
+    "aboutUrl": "https://en.wikipedia.org/wiki/Castella_de_Aguada"
+  },
+  "Lodhi Gardens": {
+    "imageUrl": "/places/lodhi-gardens.webp",
+    "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Lodhi_Gardens_on_a_sunny_day.jpg",
+    "aboutUrl": "https://en.wikipedia.org/wiki/Lodi_Gardens"
+  },
+  "Bangalore Palace": {
+    "imageUrl": "/places/bangalore-palace.webp",
+    "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Bangalore_Mysore_Maharaja_Palace.jpg",
+    "aboutUrl": "https://en.wikipedia.org/wiki/Bengaluru_Palace"
+  },
+  "Lalbagh Botanical Garden": {
+    "imageUrl": "/places/lalbagh-botanical-garden.webp",
+    "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Glasshouse_and_fountain_at_lalbagh.jpg",
+    "aboutUrl": "https://en.wikipedia.org/wiki/Lal_Bagh"
+  },
+  "Cubbon Park": {
+    "imageUrl": "/places/cubbon-park.webp",
+    "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Cubbon_Park_W.jpg",
+    "aboutUrl": "https://en.wikipedia.org/wiki/Cubbon_Park"
+  },
+  "Aguada Fort": {
+    "imageUrl": "/places/aguada-fort.webp",
+    "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Fort_aguada.jpg",
+    "aboutUrl": "https://en.wikipedia.org/wiki/Fort_Aguada"
+  },
+  "Mattancherry Palace": {
+    "imageUrl": "/places/mattancherry-palace.webp",
+    "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Mattancherry_Palace_DSC_0899.JPG",
+    "aboutUrl": "https://en.wikipedia.org/wiki/Mattancherry_Palace"
+  },
+  "Taj Mahal": {
+    "imageUrl": "/places/taj-mahal.webp",
+    "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Taj_Mahal_%28Edited%29.jpeg",
+    "aboutUrl": "https://en.wikipedia.org/wiki/Taj_Mahal"
+  },
+  "Mehtab Bagh": {
+    "imageUrl": "/places/mehtab-bagh.webp",
+    "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Mehtab_Bagh_facing_Taj_Mahal.JPG",
+    "aboutUrl": "https://en.wikipedia.org/wiki/Mehtab_Bagh"
+  }
+}

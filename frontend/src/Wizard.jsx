@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Clock, Wallet, Heart, Car, LogOut, Building, Utensils, TreePine, ShoppingBag, Palette, Moon, Mountain, Camera } from 'lucide-react';
 
-const INDIAN_CITIES = ['Mumbai', 'Delhi', 'Bangalore', 'Jaipur', 'Goa', 'Kerala', 'Agra', 'Udaipur'];
+const INDIAN_CITIES = ['Mumbai', 'Delhi', 'Bangalore', 'Jaipur', 'Goa', 'Kochi', 'Agra', 'Udaipur'];
 const INTERESTS_DATA = [
   { name: 'Heritage', icon: '🏛️' },
   { name: 'Street Food', icon: '🌮' },
@@ -66,6 +66,7 @@ function Wizard() {
     });
   };
 
+  const validTimes = formData.timings.start && formData.timings.end > formData.timings.start;
   const steps = [
     {
       id: 'city',
@@ -127,13 +128,14 @@ function Wizard() {
                 className="input-field" 
                 value={formData.timings.end}
                 onChange={e => setFormData({...formData, timings: {...formData.timings, end: e.target.value}})}
-                onKeyDown={e => handleKeyDown(e, true)}
+                onKeyDown={e => handleKeyDown(e, validTimes)}
               />
             </div>
           </div>
+          {!validTimes && <p role="alert">Choose an end time after your start time.</p>}
           <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
             <button className="btn btn-secondary" onClick={handleBack}>Back</button>
-            <button className="btn" onClick={handleNext}>Next</button>
+            <button className="btn" disabled={!validTimes} onClick={handleNext}>Next</button>
           </div>
         </div>
       )

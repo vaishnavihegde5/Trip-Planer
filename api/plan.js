@@ -20,6 +20,6 @@ module.exports = async (req, res) => {
     const plan = generateTripPlan(body);
     res.status(200).json(plan);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(error.statusCode || 500).json({ error: error.message });
   }
 };
