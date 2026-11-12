@@ -20,6 +20,7 @@ function Login() {
       });
       const data = await res.json();
       if (data.user) {
+        sessionStorage.removeItem('guest');
         localStorage.setItem('user', JSON.stringify(data.user));
         navigate('/plan');
       } else {
@@ -68,6 +69,12 @@ function Login() {
           />
           <button type="submit" className="btn">Sign In / Register</button>
         </form>
+        <button type="button" className="btn btn-secondary guest-action" onClick={() => {
+          localStorage.removeItem('user');
+          sessionStorage.setItem('guest','yes');
+          navigate('/plan');
+        }}>Continue as guest <span aria-hidden="true">→</span></button>
+        <p className="schedule-note">Guests can plan and rearrange a day without an account. Sign in to save trips.</p>
       </motion.div>
     </div>
   );

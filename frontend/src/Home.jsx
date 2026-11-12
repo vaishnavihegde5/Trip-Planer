@@ -8,9 +8,9 @@ export default function Home() {
   const [rain, setRain] = useState(false);
   const signedIn = Boolean(localStorage.getItem('user'));
   const stops = [
-    ['08:00', rain ? 'Albert Hall Museum' : 'Amber Fort'],
-    ['10:00', 'Tapri Central'],
-    ['12:00', rain ? 'City Palace Museum' : 'Jal Mahal'],
+    ['09:00', rain ? 'Albert Hall Museum' : 'Hawa Mahal',rain ? 'albert-hall-museum' : 'hawa-mahal'],
+    ['10:30', 'City Palace Museum','city-palace-museum'],
+    ['12:00', rain ? 'Govind Dev Ji Temple' : 'Jantar Mantar',rain ? 'govind-dev-ji-temple' : 'jantar-mantar-jaipur'],
   ];
   return <main className="travel-home">
     <header className="masthead">
@@ -32,7 +32,7 @@ export default function Home() {
           <div className="sample-heading"><h3>Sample itinerary</h3>
             <button className="weather-chip" aria-pressed={rain} onClick={() => setRain(!rain)}>{rain ? <CloudRain size={15}/> : <Sun size={15}/>} Rainy Day <i/></button>
           </div>
-          <ol className="sample-stops" aria-live="polite">{stops.map(([time, place]) => <li key={time}><time>{time}</time><a href={mapsSearch(place, 'Jaipur')} target="_blank" rel="noreferrer" aria-label={`Find ${place} on Google Maps`}>{place}<MapPin size={14}/></a></li>)}</ol>
+          <ol className="sample-stops" aria-live="polite">{stops.map(([time, place, photo]) => <li key={time}><img className="sample-thumb" src={'/places/'+photo+'.webp'} alt={place}/><time>{time}</time><a href={mapsSearch(place, 'Jaipur')} target="_blank" rel="noreferrer" aria-label={`Find ${place} on Google Maps`}>{place}<MapPin size={14}/></a></li>)}</ol>
         </div>
       </article>
     </section>

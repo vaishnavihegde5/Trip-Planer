@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
 
   try {
     const body = await parseJsonBody(req);
-    const plan = generateTripPlan(body);
+    const plan = await generateTripPlan(body);
     res.status(200).json(plan);
   } catch (error) {
     res.status(error.statusCode || 500).json({ error: error.message });

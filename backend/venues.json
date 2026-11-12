@@ -1,0 +1,616 @@
+{
+  "Mumbai": [
+    {
+      "name": "Gateway of India",
+      "area": "Colaba",
+      "category": "Heritage",
+      "type": "outdoor",
+      "point": [
+        18.922,
+        72.8347
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Gateway_of_India",
+      "imageUrl": "/places/gateway-of-india.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Mumbai_03-2016_30_Gateway_of_India.jpg"
+    },
+    {
+      "name": "Chhatrapati Shivaji Maharaj Vastu Sangrahalaya",
+      "area": "Fort",
+      "category": "Museums",
+      "type": "indoor",
+      "point": [
+        18.9267,
+        72.8324
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_Maharaj_Vastu_Sangrahalaya",
+      "imageUrl": "/places/chhatrapati-shivaji-maharaj-vastu-sangrahalaya.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Chhatrapati_Shivaji_Maharaj_Vastu_Sangrahalaya.jpg"
+    },
+    {
+      "name": "Jehangir Art Gallery",
+      "area": "Kala Ghoda",
+      "category": "Art",
+      "type": "indoor",
+      "point": [
+        18.9274559,
+        72.831703
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Jehangir_Art_Gallery",
+      "imageUrl": "/places/jehangir-art-gallery.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:JAG_From_Outside.jpg"
+    },
+    {
+      "name": "Leopold Cafe",
+      "area": "Colaba",
+      "category": "Food",
+      "type": "indoor",
+      "point": [
+        18.9227,
+        72.8316
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Leopold_Cafe",
+      "imageUrl": "/places/leopold-cafe.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:LeopoldCafe_gobeirne.jpg"
+    },
+    {
+      "name": "Flora Fountain",
+      "area": "Fort",
+      "category": "Heritage",
+      "type": "outdoor",
+      "point": [
+        18.9325,
+        72.8315
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Flora_Fountain",
+      "imageUrl": "/places/flora-fountain.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Mumbai_03-2016_72_Flora_Fountain.jpg"
+    },
+    {
+      "name": "St. Thomas Cathedral",
+      "area": "Fort",
+      "category": "Heritage",
+      "type": "indoor",
+      "point": [
+        18.93166667,
+        72.83361111
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/St._Thomas_Cathedral%2C_Mumbai",
+      "imageUrl": "/places/st-thomas-cathedral-mumbai.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:St._Thomas_Cathedral%2C_Mumbai.jpg"
+    },
+    {
+      "name": "Rajabai Clock Tower",
+      "area": "Fort",
+      "category": "Heritage",
+      "type": "outdoor",
+      "point": [
+        18.9297,
+        72.8301
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Rajabai_Clock_Tower",
+      "imageUrl": "/places/rajabai-clock-tower.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Rajabai_Clock_Tower%2C_Mumbai_%2831_August_2008%29.jpg"
+    }
+  ],
+  "Delhi": [
+    {
+      "name": "India Gate",
+      "area": "Kartavya Path",
+      "category": "Heritage",
+      "type": "outdoor",
+      "point": [
+        28.61286389,
+        77.22930556
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/India_Gate",
+      "imageUrl": "/places/india-gate.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:India_Gate_front.jpg"
+    },
+    {
+      "name": "National Gallery of Modern Art",
+      "area": "India Gate",
+      "category": "Art",
+      "type": "indoor",
+      "point": [
+        28.610182,
+        77.234401
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/National_Gallery_of_Modern_Art%2C_New_Delhi",
+      "imageUrl": "/places/national-gallery-of-modern-art-new-delhi.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:National_Gallery_of_Modern_Art_logo_%282025%29.png"
+    },
+    {
+      "name": "National Science Centre",
+      "area": "Pragati Maidan",
+      "category": "Museums",
+      "type": "indoor",
+      "point": [
+        28.6131,
+        77.2454
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/National_Science_Centre%2C_Delhi",
+      "imageUrl": "/places/national-science-centre-delhi.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Pamulaparti_Venkata_Narasimha_Rao_Unveiling_Inaugural_Plaque_-_National_Science_Centre_-_New_Delhi_1992-01-09_262.tif"
+    },
+    {
+      "name": "Purana Qila",
+      "area": "Mathura Road",
+      "category": "Heritage",
+      "type": "outdoor",
+      "point": [
+        28.60944444,
+        77.24416667
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Purana_Qila",
+      "imageUrl": "/places/purana-qila.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Purana_Qila_01.jpg"
+    },
+    {
+      "name": "Gurudwara Bangla Sahib",
+      "area": "Connaught Place",
+      "category": "Heritage",
+      "type": "indoor",
+      "point": [
+        28.6267,
+        77.2089
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Gurudwara_Bangla_Sahib",
+      "imageUrl": "/places/gurudwara-bangla-sahib.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Front_view_of_Gurudwara_Bangla_Sahib%2C_Delhi.jpg"
+    },
+    {
+      "name": "Jantar Mantar",
+      "area": "Connaught Place",
+      "category": "Heritage",
+      "type": "outdoor",
+      "point": [
+        28.6271,
+        77.2164
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Jantar_Mantar%2C_New_Delhi",
+      "imageUrl": "/places/jantar-mantar-new-delhi.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Jantar_Mantar%2C_New_Delhi_%28Misra_Yantra%29.jpg"
+    }
+  ],
+  "Bangalore": [
+    {
+      "name": "Cubbon Park",
+      "area": "Central Bengaluru",
+      "category": "Nature",
+      "type": "outdoor",
+      "point": [
+        12.9763,
+        77.5929
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Cubbon_Park",
+      "imageUrl": "/places/cubbon-park.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Cubbon_Park_W.jpg"
+    },
+    {
+      "name": "Visvesvaraya Industrial and Technological Museum",
+      "area": "Kasturba Road",
+      "category": "Museums",
+      "type": "indoor",
+      "point": [
+        12.9751,
+        77.5964
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Visvesvaraya_Industrial_and_Technological_Museum",
+      "imageUrl": "/places/visvesvaraya-industrial-and-technological-museum.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Visvesvaraya_Industrial_and_Technological_Museum%2C_Bangalore_%282025%29_02.jpg"
+    },
+    {
+      "name": "Government Museum",
+      "area": "Kasturba Road",
+      "category": "Museums",
+      "type": "indoor",
+      "point": [
+        12.9748,
+        77.5961
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Government_Museum%2C_Bangalore",
+      "imageUrl": "/places/government-museum-bangalore.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Government_Museum_Banglore_305.jpg"
+    },
+    {
+      "name": "St. Mark's Cathedral",
+      "area": "MG Road",
+      "category": "Heritage",
+      "type": "indoor",
+      "point": [
+        12.9760281,
+        77.6001531
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/St._Mark%27s_Cathedral%2C_Bangalore",
+      "imageUrl": "/places/st-mark-s-cathedral-bangalore.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:St._Marks_Cathedral%2C_Bangalore._%28Old_Postcard_Re-print%29%2C_India_Post_%282014%29.jpg"
+    },
+    {
+      "name": "Vidhana Soudha",
+      "area": "Ambedkar Veedhi",
+      "category": "Heritage",
+      "type": "outdoor",
+      "point": [
+        12.9796,
+        77.5906
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Vidhana_Soudha",
+      "imageUrl": "/places/vidhana-soudha.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Lighting_of_Vidhana_Soudha.jpg"
+    },
+    {
+      "name": "UB City",
+      "area": "Vittal Mallya Road",
+      "category": "Shopping",
+      "type": "indoor",
+      "point": [
+        12.97175,
+        77.59583333
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/UB_City",
+      "imageUrl": "/places/ub-city.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:UBtowers.jpg"
+    }
+  ],
+  "Jaipur": [
+    {
+      "name": "Hawa Mahal",
+      "area": "Old City",
+      "category": "Heritage",
+      "type": "outdoor",
+      "point": [
+        26.9239,
+        75.8267
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Hawa_Mahal",
+      "imageUrl": "/places/hawa-mahal.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:East_facade_Hawa_Mahal_Jaipur_from_ground_level_%28July_2022%29_-_img_01.jpg"
+    },
+    {
+      "name": "City Palace Museum",
+      "area": "Old City",
+      "category": "Museums",
+      "type": "indoor",
+      "point": [
+        26.9258,
+        75.8237
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/City_Palace%2C_Jaipur",
+      "imageUrl": "/places/city-palace-museum.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Chandra_Mahal%2C_City_Palace%2C_Jaipur%2C_20191218_0951_9043.jpg"
+    },
+    {
+      "name": "Albert Hall Museum",
+      "area": "Ram Niwas Garden",
+      "category": "Museums",
+      "type": "indoor",
+      "point": [
+        26.9117,
+        75.8194
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Albert_Hall_Museum",
+      "imageUrl": "/places/albert-hall-museum.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Albert_Hall_%28_Jaipur_%29.jpg"
+    },
+    {
+      "name": "Jantar Mantar",
+      "area": "Old City",
+      "category": "Heritage",
+      "type": "outdoor",
+      "point": [
+        26.92472,
+        75.82444
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Jantar_Mantar%2C_Jaipur",
+      "imageUrl": "/places/jantar-mantar-jaipur.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Jantar_Mantar_at_Jaipur.jpg"
+    },
+    {
+      "name": "Govind Dev Ji Temple",
+      "area": "Old City",
+      "category": "Heritage",
+      "type": "indoor",
+      "point": [
+        26.9288302,
+        75.8239547
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Govind_Dev_Ji_Temple",
+      "imageUrl": "/places/govind-dev-ji-temple.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Govind_dev_ji.jpg"
+    },
+    {
+      "name": "Birla Mandir",
+      "area": "Tilak Nagar",
+      "category": "Heritage",
+      "type": "indoor",
+      "point": [
+        26.8921,
+        75.8155
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Birla_Mandir%2C_Jaipur",
+      "imageUrl": "/places/birla-mandir-jaipur.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Birla_Mandir_Jaipur_%282022-07%29.jpg"
+    }
+  ],
+  "Goa": [
+    {
+      "name": "Basilica of Bom Jesus",
+      "area": "Old Goa",
+      "category": "Heritage",
+      "type": "indoor",
+      "point": [
+        15.50087222,
+        73.91151111
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Basilica_of_Bom_Jesus",
+      "imageUrl": "/places/basilica-of-bom-jesus.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Front_Elevation_of_Basilica_of_Bom_Jesus.jpg"
+    },
+    {
+      "name": "Sé Cathedral",
+      "area": "Old Goa",
+      "category": "Heritage",
+      "type": "indoor",
+      "point": [
+        15.50377222,
+        73.91233056
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/S%C3%A9_Cathedral",
+      "imageUrl": "/places/s-cathedral.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Se_Cathedral_from_Rua_Direita.jpg"
+    },
+    {
+      "name": "Church of St. Augustine",
+      "area": "Old Goa",
+      "category": "Heritage",
+      "type": "outdoor",
+      "point": [
+        15.50041667,
+        73.90661111
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Church_of_St._Augustine%2C_Goa",
+      "imageUrl": "/places/church-of-st-augustine-goa.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Churches_and_Convents_of_Goa-109264.jpg"
+    },
+    {
+      "name": "Archaeological Museum and Portrait Gallery",
+      "area": "Old Goa",
+      "category": "Museums",
+      "type": "indoor",
+      "point": [
+        15.5024769,
+        73.91151
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Archaeological_Museum_and_Portrait_Gallery",
+      "imageUrl": "/places/archaeological-museum-and-portrait-gallery.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Archaeological_Museum_and_Church_of_St._Francis_of_Assisi_in_Goa_DSC02487.JPG"
+    }
+  ],
+  "Kochi": [
+    {
+      "name": "Mattancherry Palace",
+      "area": "Mattancherry",
+      "category": "Museums",
+      "type": "indoor",
+      "point": [
+        9.9583,
+        76.2596
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Mattancherry_Palace",
+      "imageUrl": "/places/mattancherry-palace.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Mattancherry_Palace_DSC_0899.JPG"
+    },
+    {
+      "name": "Paradesi Synagogue",
+      "area": "Mattancherry",
+      "category": "Heritage",
+      "type": "indoor",
+      "point": [
+        9.95722222,
+        76.25944444
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Paradesi_Synagogue",
+      "imageUrl": "/places/paradesi-synagogue.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Jewish_synagouge_kochi_india.jpg"
+    },
+    {
+      "name": "Santa Cruz Cathedral Basilica",
+      "area": "Fort Kochi",
+      "category": "Heritage",
+      "type": "indoor",
+      "point": [
+        9.965,
+        76.243
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Santa_Cruz_Cathedral_Basilica%2C_Kochi",
+      "imageUrl": "/places/santa-cruz-cathedral-basilica-kochi.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Santa_Cruz_Basilica_-_200_MP_03.jpg"
+    },
+    {
+      "name": "St. Francis Church",
+      "area": "Fort Kochi",
+      "category": "Heritage",
+      "type": "indoor",
+      "point": [
+        9.965945,
+        76.241102
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/St._Francis_Church%2C_Kochi",
+      "imageUrl": "/places/st-francis-church-kochi.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:St_Francis_Church_Fort_Kochi_DSC_1048.JPG"
+    },
+    {
+      "name": "Fort Kochi Beach",
+      "area": "Fort Kochi",
+      "category": "Nature",
+      "type": "outdoor",
+      "point": [
+        9.968,
+        76.244
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Fort_Kochi_Beach",
+      "imageUrl": "/places/fort-kochi-beach.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:%E0%B4%AB%E0%B5%8B%E0%B4%B0%E0%B5%8D%E0%B4%9F%E0%B5%8D%E0%B4%9F%E0%B5%8D-%E0%B4%95%E0%B5%8A%E0%B4%9A%E0%B5%8D%E0%B4%9A%E0%B4%BF-%E0%B4%9A%E0%B5%80%E0%B4%A8%E0%B4%B5%E0%B4%B2%E0%B4%95%E0%B5%BE.jpg"
+    },
+    {
+      "name": "Dutch Cemetery",
+      "area": "Fort Kochi",
+      "category": "Heritage",
+      "type": "outdoor",
+      "point": [
+        9.9642,
+        76.2383
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Dutch_Cemetery%2C_Fort_Kochi",
+      "imageUrl": "/places/dutch-cemetery-fort-kochi.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Gate_of_Dutch_Cemetery%2C_Kochi.jpg"
+    }
+  ],
+  "Agra": [
+    {
+      "name": "Taj Mahal",
+      "area": "Tajganj",
+      "category": "Heritage",
+      "type": "outdoor",
+      "point": [
+        27.1751,
+        78.0421
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Taj_Mahal",
+      "imageUrl": "/places/taj-mahal.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Taj_Mahal_%28Edited%29.jpeg"
+    },
+    {
+      "name": "Agra Fort",
+      "area": "Rakabganj",
+      "category": "Heritage",
+      "type": "outdoor",
+      "point": [
+        27.179542,
+        78.021101
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Agra_Fort",
+      "imageUrl": "/places/agra-fort.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Agra_03-2016_16_Agra_Fort.jpg"
+    },
+    {
+      "name": "Jama Mosque",
+      "area": "Mantola",
+      "category": "Heritage",
+      "type": "indoor",
+      "point": [
+        27.18205556,
+        78.01619444
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Jama_Mosque%2C_Agra",
+      "imageUrl": "/places/jama-mosque-agra.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Jami_Masjid_-Agra_-Uttar_Pradesh_-IMG_0282.jpg"
+    },
+    {
+      "name": "Musamman Burj (Agra Fort)",
+      "area": "Agra Fort",
+      "category": "Heritage",
+      "type": "indoor",
+      "point": [
+        27.1789,
+        78.0236
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Musamman_Burj_%28Agra_Fort%29",
+      "imageUrl": "/places/musamman-burj-agra-fort.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Musamman_Burj_%28Agra_Fort%29-3.jpg"
+    },
+    {
+      "name": "Jahangiri Mahal",
+      "area": "Agra Fort",
+      "category": "Heritage",
+      "type": "indoor",
+      "point": [
+        27.1785,
+        78.0223
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Jahangiri_Mahal",
+      "imageUrl": "/places/jahangiri-mahal.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Jehangir_Mahal_Agra_Fort_1.jpg"
+    },
+    {
+      "name": "Moti Masjid (Agra Fort)",
+      "area": "Agra Fort",
+      "category": "Heritage",
+      "type": "indoor",
+      "point": [
+        27.1814,
+        78.0219
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Moti_Masjid_%28Agra_Fort%29",
+      "imageUrl": "/places/moti-masjid-agra-fort.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Moti_Masjid%2CAgra.jpg"
+    }
+  ],
+  "Udaipur": [
+    {
+      "name": "City Palace",
+      "area": "Old City",
+      "category": "Museums",
+      "type": "indoor",
+      "point": [
+        24.5765,
+        73.6835
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/City_Palace%2C_Udaipur",
+      "imageUrl": "/places/city-palace-udaipur.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Udaipur_City_Palace.jpg"
+    },
+    {
+      "name": "Bagore-ki-Haveli",
+      "area": "Gangaur Ghat",
+      "category": "Museums",
+      "type": "indoor",
+      "point": [
+        24.5796,
+        73.6823
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Bagore-ki-Haveli",
+      "imageUrl": "/places/bagore-ki-haveli.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Bagore_ki_Haveli%2C_Rajasthan.jpg"
+    },
+    {
+      "name": "Jagdish Temple",
+      "area": "Old City",
+      "category": "Heritage",
+      "type": "indoor",
+      "point": [
+        24.5794,
+        73.6837
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Jagdish_Temple%2C_Udaipur",
+      "imageUrl": "/places/jagdish-temple-udaipur.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Jagdish_Temple_Udaipur.jpg"
+    },
+    {
+      "name": "Gulab Bagh and Zoo",
+      "area": "Gulab Bagh",
+      "category": "Nature",
+      "type": "outdoor",
+      "point": [
+        24.57138889,
+        73.69277778
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Gulab_Bagh_and_Zoo",
+      "imageUrl": "/places/gulab-bagh-and-zoo.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:GulabBagh_Entrancec.jpg"
+    },
+    {
+      "name": "Doodh Talai Lake",
+      "area": "Pichola",
+      "category": "Nature",
+      "type": "outdoor",
+      "point": [
+        24.5684295,
+        73.6847684
+      ],
+      "aboutUrl": "https://en.wikipedia.org/wiki/Doodh_Talai_Lake",
+      "imageUrl": "/places/doodh-talai-lake.webp",
+      "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:DoodhTalai.jpg"
+    }
+  ]
+}

@@ -93,3 +93,48 @@ body { background:var(--paper); color:var(--ink); }
   .stop-card { padding:15px; }
   .stop-photo img { width:70px; height:74px; }
 }
+.planner-page { max-width:1080px; margin:auto; padding:0 clamp(16px,5vw,64px) 56px; }
+.planner-intro { padding:38px 0 26px; }
+.planner-intro h1 { font:normal clamp(2.6rem,6vw,4.5rem)/1.08 Georgia,serif; letter-spacing:-.055em; }
+.planner-intro em { color:var(--accent); }
+.planner-intro p { margin-top:12px; color:#4d6059; }
+.planner-form { display:grid; gap:16px; }
+.selection-panel { padding:clamp(18px,3vw,30px); border:1px solid var(--line); background:#fffef9; border-radius:16px; }
+.selection-panel h2 { font:normal 1.65rem Georgia,serif; }
+.destination-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:9px; margin:18px 0; }
+.destination-grid button { text-align:left; background:#faf9f3; border:1px solid var(--line); border-radius:12px; position:relative; padding:0; overflow:hidden; color:var(--ink); cursor:pointer; }
+.destination-grid img { width:100%; height:85px; object-fit:cover; display:block; }
+.destination-grid span { display:grid; gap:3px; padding:9px 11px; }
+.destination-grid small,.field-grid small { color:#506058; font-weight:400; }
+.destination-grid button[aria-pressed=true] { outline:2px solid var(--ink); outline-offset:-1px; background:#e9efe5; }
+.destination-grid svg { position:absolute; right:7px; top:7px; border-radius:50%; background:var(--ink); color:white; padding:2px; width:22px; height:22px; }
+.field-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px; }
+.field-grid label,.budget-heading label { font-weight:600; font-size:.9rem; }
+.field-grid input,.custom-interest input { display:block; width:100%; min-width:0; padding:11px; margin-top:5px; border:1px solid #c6ccc2; border-radius:8px; background:#fff; color:var(--ink); font:inherit; }
+.budget-heading,.range-ends,.selection-title,.plan-submit { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.budget-heading { margin-top:22px; }
+.budget-heading output { font:normal 1.8rem Georgia,serif; font-variant-numeric:tabular-nums; }
+.budget-range { appearance:none; width:100%; height:28px; cursor:pointer; background:transparent; margin-top:8px; }
+.budget-range::-webkit-slider-runnable-track { height:8px; border-radius:10px; background:linear-gradient(to right,#346758 var(--fill),#e1e5d9 var(--fill)); }
+.budget-range::-moz-range-track { height:8px; border-radius:10px; background:#e1e5d9; }
+.budget-range::-moz-range-progress { height:8px; border-radius:10px; background:#346758; }
+.budget-range::-webkit-slider-thumb { appearance:none; width:23px; height:23px; margin-top:-7.5px; border:3px solid white; background:#346758; border-radius:50%; box-shadow:0 0 0 1px #346758,0 2px 5px #293c3040; }
+.budget-range::-moz-range-thumb { width:18px; height:18px; border:3px solid white; background:#346758; border-radius:50%; box-shadow:0 0 0 1px #346758; }
+.range-ends,.selection-title span { color:#58665c; font-size:.8rem; }
+.pick-chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:15px; }
+.pick-chips button,.custom-interest button { border-radius:20px; background:#fff; color:var(--ink); padding:9px 14px; border:1px solid var(--line); font:inherit; cursor:pointer; display:inline-flex; align-items:center; }
+.pick-chips button[aria-pressed=true] { background:var(--ink); color:white; }
+.planner-page button:disabled { opacity:.5; cursor:default; }
+.custom-interest { display:flex; gap:8px; margin-top:14px; }
+.custom-interest input { margin:0; }
+.plan-submit { padding:10px 0; flex-wrap:wrap; }
+.plan-submit span { display:flex; align-items:center; gap:6px; color:#506058; font-size:.9rem; }
+.plan-submit button { border:0; cursor:pointer; font:inherit; }
+.route-options { flex-direction:column; align-items:stretch; }
+.route-options button { text-align:left; padding:11px 14px; display:flex; justify-content:space-between; gap:6px; align-items:center; }
+.route-options button small { opacity:.85; }
+.leg-note { margin:10px 0 8px 14px; color:#4d6059; font-size:.88rem; }
+.stop-photo img { width:112px; height:91px; }
+.guest-action { margin-top:12px; }
+@media(max-width:650px) { .destination-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .field-grid { grid-template-columns:1fr; } .stop-photo img { width:79px; height:84px; } }
+.sample-thumb { width:44px; height:40px; object-fit:cover; border-radius:6px; }

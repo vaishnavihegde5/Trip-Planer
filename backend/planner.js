@@ -1,133 +1,40 @@
-const photos = require('./placePhotos.json');
+const venues = require('./venues.json');
+const { discoverVenues } = require('./venueDiscovery');
 
-const realPlacesDB = {
-  Mumbai: [
-    { name: 'Gateway of India', area: 'Colaba', type: 'outdoor', keyword: 'monument' },
-    { name: 'Prithvi Cafe', area: 'Juhu', type: 'indoor', keyword: 'cafe' },
-    { name: 'Sanjay Gandhi National Park', area: 'Borivali', type: 'outdoor', keyword: 'park' },
-    { name: 'Leopold Cafe', area: 'Colaba', type: 'indoor', keyword: 'restaurant' },
-    { name: 'Dr. Bhau Daji Lad Museum', area: 'Byculla', type: 'indoor', keyword: 'museum' },
-    { name: 'Marine Drive', area: 'Churchgate', type: 'outdoor', keyword: 'landscape' },
-    { name: 'Bandra Fort', area: 'Bandra', type: 'outdoor', keyword: 'landscape' },
-    { name: 'The Bombay Canteen', area: 'Lower Parel', type: 'indoor', keyword: 'restaurant' }
-  ],
-  Delhi: [
-    { name: 'India Gate', area: 'Rajpath', type: 'outdoor', keyword: 'monument' },
-    { name: 'United Coffee House', area: 'Connaught Place', type: 'indoor', keyword: 'cafe' },
-    { name: 'Lodhi Gardens', area: 'Lodhi Estate', type: 'outdoor', keyword: 'park' },
-    { name: "Karim's", area: 'Old Delhi', type: 'indoor', keyword: 'restaurant' },
-    { name: 'National Museum', area: 'Janpath', type: 'indoor', keyword: 'museum' },
-    { name: 'Hauz Khas Fort', area: 'Hauz Khas', type: 'outdoor', keyword: 'landscape' },
-    { name: 'Qutub Minar', area: 'Mehrauli', type: 'outdoor', keyword: 'monument' },
-    { name: 'Indian Accent', area: 'Lodhi Road', type: 'indoor', keyword: 'restaurant' }
-  ],
-  Bangalore: [
-    { name: 'Bangalore Palace', area: 'Vasanth Nagar', type: 'outdoor', keyword: 'palace' },
-    { name: 'Third Wave Coffee', area: 'Indiranagar', type: 'indoor', keyword: 'cafe' },
-    { name: 'Lalbagh Botanical Garden', area: 'Mavalli', type: 'outdoor', keyword: 'park' },
-    { name: 'Vidyarthi Bhavan', area: 'Basavanagudi', type: 'indoor', keyword: 'restaurant' },
-    { name: 'Visvesvaraya Museum', area: 'Kasturba Road', type: 'indoor', keyword: 'museum' },
-    { name: 'Cubbon Park', area: 'Ambedkar Veedhi', type: 'outdoor', keyword: 'park' },
-    { name: 'Nandi Hills', area: 'Chikkaballapur', type: 'outdoor', keyword: 'landscape' },
-    { name: 'Toit Brewpub', area: 'Indiranagar', type: 'indoor', keyword: 'restaurant' }
-  ],
-  Jaipur: [
-    { name: 'City Palace Museum', area: 'Old City', type: 'indoor', keyword: 'museum' },
-    { name: 'Anokhi Museum of Hand Printing', area: 'Amer', type: 'indoor', keyword: 'museum' },
-    { name: 'Hawa Mahal', area: 'Badi Choupad', type: 'outdoor', keyword: 'palace' },
-    { name: 'Tapri Central', area: 'C-Scheme', type: 'indoor', keyword: 'cafe' },
-    { name: 'Central Park', area: 'Rambagh', type: 'outdoor', keyword: 'park' },
-    { name: 'Chokhi Dhani', area: 'Tonk Road', type: 'outdoor', keyword: 'restaurant' },
-    { name: 'Albert Hall Museum', area: 'Ram Niwas Garden', type: 'indoor', keyword: 'museum' },
-    { name: 'Amer Fort', area: 'Amer', type: 'outdoor', keyword: 'monument' },
-    { name: 'Jal Mahal', area: 'Amer Road', type: 'outdoor', keyword: 'landscape' },
-    { name: 'Suvarna Mahal', area: 'Rambagh Palace', type: 'indoor', keyword: 'restaurant' }
-  ],
-  Goa: [
-    { name: 'Basilica of Bom Jesus', area: 'Old Goa', type: 'indoor', keyword: 'church' },
-    { name: 'Artjuna Cafe', area: 'Anjuna', type: 'indoor', keyword: 'cafe' },
-    { name: 'Dudhsagar Falls', area: 'Sanguem', type: 'outdoor', keyword: 'landscape' },
-    { name: 'Thalassa', area: 'Siolim', type: 'indoor', keyword: 'restaurant' },
-    { name: 'Goa State Museum', area: 'Panaji', type: 'indoor', keyword: 'museum' },
-    { name: 'Baga Beach', area: 'Baga', type: 'outdoor', keyword: 'landscape' },
-    { name: 'Aguada Fort', area: 'Candolim', type: 'outdoor', keyword: 'monument' },
-    { name: 'Gunpowder', area: 'Assagao', type: 'indoor', keyword: 'restaurant' }
-  ],
-  Kochi: [
-    { name: 'Chinese Fishing Nets', area: 'Fort Kochi', type: 'outdoor', keyword: 'landscape' },
-    { name: 'Fort Kochi Beach', area: 'Fort Kochi', type: 'outdoor', keyword: 'park' },
-    { name: 'Kashi Art Cafe', area: 'Fort Kochi', type: 'indoor', keyword: 'cafe' },
-    { name: 'Mattancherry Palace', area: 'Mattancherry', type: 'indoor', keyword: 'palace' },
-    { name: 'Indo-Portuguese Museum', area: 'Fort Kochi', type: 'indoor', keyword: 'museum' },
-    { name: 'Indian Naval Maritime Museum', area: 'Fort Kochi', type: 'indoor', keyword: 'museum' }
-  ],
-  Agra: [
-    { name: 'Agra Art Gallery', area: 'Tajganj', type: 'indoor', keyword: 'museum' },
-    { name: 'Taj Museum', area: 'Taj Mahal complex', type: 'indoor', keyword: 'museum' },
-    { name: 'Taj Mahal', area: 'Tajganj', type: 'outdoor', keyword: 'monument' },
-    { name: 'Sheroes Hangout', area: 'Fatehabad Road', type: 'indoor', keyword: 'cafe' },
-    { name: 'Mehtab Bagh', area: 'Dharmapuri', type: 'outdoor', keyword: 'park' },
-    { name: 'Pinch of Spice', area: 'Sanjay Place', type: 'indoor', keyword: 'restaurant' },
-    { name: 'Agra Fort', area: 'Rakabganj', type: 'outdoor', keyword: 'monument' },
-    { name: 'Tomb of Itimad-ud-Daulah', area: 'Moti Bagh', type: 'outdoor', keyword: 'monument' },
-    { name: 'Fatehpur Sikri', area: 'Fatehpur Sikri', type: 'outdoor', keyword: 'monument' },
-    { name: 'Peshawri', area: 'Tajganj', type: 'indoor', keyword: 'restaurant' }
-  ],
-  Udaipur: [
-    { name: 'Bagore Ki Haveli', area: 'Gangaur Ghat', type: 'indoor', keyword: 'museum' },
-    { name: 'City Palace', area: 'Old City', type: 'indoor', keyword: 'palace' },
-    { name: "Jheel's Ginger Coffee Bar", area: 'Gangaur Ghat', type: 'indoor', keyword: 'cafe' },
-    { name: 'Saheliyon Ki Bari', area: 'Panchwati', type: 'outdoor', keyword: 'park' },
-    { name: 'Ambrai Restaurant', area: 'Chand Pole', type: 'outdoor', keyword: 'restaurant' },
-    { name: 'Vintage Car Museum', area: 'Gulab Bagh', type: 'indoor', keyword: 'museum' },
-    { name: 'Lake Pichola', area: 'Pichola', type: 'outdoor', keyword: 'lake' },
-    { name: 'Sajjangarh Monsoon Palace', area: 'Bansdara Peak', type: 'outdoor', keyword: 'palace' },
-    { name: 'Tribute Restaurant', area: 'Fateh Sagar', type: 'indoor', keyword: 'restaurant' }
-  ]
-};
-
-const interestKeywords = {
-  heritage: ['monument', 'palace', 'church'], museums: ['museum'], art: ['museum', 'palace'],
-  nature: ['park', 'lake', 'landscape'], adventure: ['park', 'landscape'],
-  'street food': ['restaurant', 'cafe'], nightlife: ['restaurant'], cultural: ['museum', 'palace', 'monument']
-};
+const profiles = [
+  { name: 'Neighbourhood stroll', count: 2, radius: 1.6, interests: ['Nature', 'Food'] },
+  { name: 'Culture trail', count: 3, radius: 3, interests: ['Museums', 'Art', 'Heritage'] },
+  { name: 'City sampler', count: 4, radius: 4, interests: ['Shopping', 'Nature', 'Heritage'] }
+];
 
 function destination(value = '') {
-  const name = value.trim().toLowerCase();
-  if (name === 'kerala') return 'Kochi';
-  if (name === 'bengaluru') return 'Bangalore';
-  return Object.keys(realPlacesDB).find(city => city.toLowerCase() === name) || value.trim();
+  const input = value.trim().toLowerCase();
+  if (input === 'kerala') return 'Kochi';
+  if (input === 'bengaluru') return 'Bangalore';
+  return Object.keys(venues).find(city => city.toLowerCase() === input) || value.trim();
 }
 
-function discoveryPlace(keyword, area, type) {
-  return { name: 'Find ' + keyword, area, type, keyword, searchTerm: keyword };
+function distance(a, b) {
+  const rad = Math.PI / 180;
+  const lat = (b.point[0] - a.point[0]) * rad;
+  const lon = (b.point[1] - a.point[1]) * rad;
+  const h = Math.sin(lat / 2) ** 2 + Math.cos(a.point[0] * rad) * Math.cos(b.point[0] * rad) * Math.sin(lon / 2) ** 2;
+  return 12742 * Math.asin(Math.min(1, Math.sqrt(h)));
 }
 
-function stop(place, city) {
-  const query = [place.searchTerm || place.name, place.area, city, 'India'].filter(Boolean).join(', ');
-  return {
-    title: place.name, location: place.searchTerm || place.name, area: place.area, city,
-    type: place.type, mapsUrl: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(query),
-    ...photos[place.name]
-  };
+function transfer(a, b, budget) {
+  const km = distance(a, b);
+  const walking = km <= 0.9;
+  const mode = walking ? 'Walk' : budget < 2500 ? 'Auto-rickshaw' : 'Taxi';
+  const minutes = walking ? Math.max(3, Math.ceil(km * 1.45 * 15)) : 8 + Math.ceil(km * 1.45 * 4);
+  return { km: Number(km.toFixed(2)), minutes, mode };
 }
 
-function applyRainyDay(schedule = [], requestedCity) {
-  const inferredCity = Object.keys(realPlacesDB).find(key =>
-    schedule.some(item => realPlacesDB[key].some(p => p.name === item.title)));
-  const city = destination(requestedCity || schedule[0]?.city || inferredCity || '');
-  const indoorSearches = ['art galleries', 'libraries', 'indoor shopping centres', 'museums'];
-  let searchIndex = 0;
-  const used = new Set(schedule.filter(item => item.type === 'indoor').map(item => item.title));
-  const indoor = (realPlacesDB[city] || []).filter(place => place.type === 'indoor');
-  return schedule.map(item => {
-    if (item.type !== 'outdoor') return item;
-    const available = indoor.filter(place => !used.has(place.name));
-    const place = available.find(place => place.area === item.area) || available[0]
-      || discoveryPlace(indoorSearches[searchIndex++ % indoorSearches.length], item.area, 'indoor');
-    used.add(place.name);
-    return { ...stop(place, city), id: item.id, time: item.time };
-  });
+function asStop(place, city) {
+  return { title: place.name, city, location: place.name, area: place.area, type: place.type,
+    point: place.point, imageUrl: place.imageUrl, photoCreditUrl: place.photoCreditUrl,
+    aboutUrl: place.aboutUrl, mapsUrl: 'https://www.google.com/maps/search/?api=1&query=' +
+      encodeURIComponent([place.name, place.area, city, 'India'].filter(Boolean).join(', ')) };
 }
 
 function minutes(value) {
@@ -136,37 +43,114 @@ function minutes(value) {
   return hours * 60 + mins;
 }
 
-function generateTripPlan({ city: rawCity, area = '', timings, interests = [], vibe, option, transport }) {
-  const city = destination(rawCity);
-  const start = minutes(timings?.start ?? '09:00');
-  const end = minutes(timings?.end ?? '18:00');
-  if (!city || !(start < end)) {
-    throw Object.assign(new Error('Choose a city and an end time after your start time.'), { statusCode: 400 });
-  }
-  const district = area.trim().toLowerCase();
-  const places = realPlacesDB[city] || [
-    discoveryPlace('local landmarks', area, 'outdoor'), discoveryPlace('museums', area, 'indoor'),
-    discoveryPlace('parks', area, 'outdoor'), discoveryPlace('cafes', area, 'indoor')
-  ];
-  const wanted = [...interests, vibe || ''].flatMap(i => interestKeywords[i.toLowerCase()] || [i.toLowerCase()]);
-  const offset = option === 'option2' ? 2 : option === 'option3' ? 3 : 0;
-  const rotated = [...places.slice(offset), ...places.slice(0, offset)];
-  const score = place => (district && place.area.toLowerCase().includes(district) ? 5 : 0)
-    + wanted.filter(word => word && place.keyword.includes(word)).length;
-  let ranked = rotated.sort((a,b) => score(b) - score(a));
-  if (transport === 'Walking') {
-    const near = ranked[0].area;
-    ranked = ranked.filter(place => place.area === near);
-  }
-  const duration = vibe === 'relaxed' ? 120 : 90;
-  const count = Math.min(4, ranked.length, Math.max(1, Math.floor((end - start) / duration)));
-  const schedule = ranked.slice(0,count).map((place,i) => {
-    const t = start + Math.floor(i * (end-start) / count);
-    const hours = Math.floor(t/60);
-    const time = (hours % 12 || 12) + ':' + String(t%60).padStart(2,'0') + (hours < 12 ? ' AM' : ' PM');
-    return { ...stop(place, city), id: String(i + 1), time };
+function clock(t) {
+  const hours = Math.floor(t / 60);
+  return (hours % 12 || 12) + ':' + String(t % 60).padStart(2, '0') + (hours < 12 ? ' AM' : ' PM');
+}
+
+// Evaluate small, bounded routes. Distance and the visit window constrain both weather versions.
+function buildPlans(pool, city, options) {
+  const { start, end, budget, interests, area } = options;
+  const usedSets = new Set();
+  const usedStops = new Set();
+  const usedRain = new Set();
+  const indoor = pool.filter(p => p.type === 'indoor');
+  return profiles.map(profile => {
+    let best;
+    const visit = Math.min(50, end - start);
+    function explore(path, elapsed, totalKm) {
+      const last = path.at(-1);
+      const key = path.map(p => p.name).sort().join('|');
+      if (path.length && !usedSets.has(key)) {
+        const score = 10 * path.length - totalKm + path.reduce((sum, p) => sum +
+          (usedStops.has(p.name) ? 0 : 6) + (interests.includes(p.category) ? 3 : 0) +
+          (area && p.area.toLowerCase().includes(area) ? 4 : 0) +
+          (profile.interests.includes(p.category) ? 1 : 0), 0);
+        if (!best || score > best.score) {
+          const rainy = matchIndoor(path, indoor);
+          const rainKey = rainy.map(p => p.name).sort().join('|');
+          let required = visit * path.length;
+          for (let i = 1; i < path.length; i++) required += Math.max(
+            transfer(path[i-1],path[i],budget).minutes, transfer(rainy[i-1],rainy[i],budget).minutes);
+          const localRain = rainy.every(p => rainy.every(q => distance(p,q) <= 4));
+          if (!usedRain.has(rainKey) && localRain && required <= end - start) {
+            best = { path: [...path], rainy, rainKey, score, key };
+          }
+        }
+      }
+      if (path.length >= Math.min(profile.count, indoor.length)) return;
+      for (const place of pool) {
+        if (path.includes(place) || path.some(p => distance(p, place) > profile.radius)) continue;
+        const leg = last ? transfer(last, place, budget) : { minutes: 0, km: 0 };
+        if (elapsed + visit + leg.minutes <= end - start)
+          explore([...path, place], elapsed + visit + leg.minutes, totalKm + leg.km);
+      }
+    }
+    explore([], 0, 0);
+    if (!best) throw Object.assign(new Error('This destination needs more nearby photographed places for three routes.'), { statusCode: 422 });
+    usedSets.add(best.key);
+    best.path.forEach(p => usedStops.add(p.name));
+    const rainy = best.rainy;
+    usedRain.add(best.rainKey);
+    let t = start;
+    const schedule = [], rainySchedule = [];
+    for (const [i, place] of best.path.entries()) {
+      // Reserve enough time for the longer of the sunny and rainy transfers.
+      if (i) t += visit + Math.max(transfer(best.path[i-1], place, budget).minutes, transfer(rainy[i-1], rainy[i], budget).minutes);
+
+      const slot = { id: String(i + 1), time: clock(t) };
+      schedule.push({ ...asStop(place, city), ...slot });
+      rainySchedule.push({ ...asStop(rainy[i], city), ...slot });
+    }
+    return { name: profile.name, schedule, rainySchedule };
   });
-  return { schedule, rainySchedule: applyRainyDay(schedule, city) };
+}
+
+function matchIndoor(path, indoor) {
+  const reserved = new Set(path.filter(p => p.type === 'indoor').map(p => p.name));
+  return path.map(place => {
+    if (place.type === 'indoor') return place;
+    const candidates = indoor.filter(p => !reserved.has(p.name)).sort((a,b) => distance(place,a) - distance(place,b));
+    const replacement = candidates[0];
+    if (!replacement) throw Object.assign(new Error('No distinct indoor alternative is available nearby.'), { statusCode: 422 });
+    reserved.add(replacement.name);
+    return replacement;
+  });
+}
+
+async function generateTripPlan({city: input, area = '', timings, interests = [], option = 'option1', budget = 2500}) {
+  const city = destination(input);
+  const start = minutes(timings?.start ?? '09:00'), end = minutes(timings?.end ?? '18:00');
+  if (!city || !(start < end) || !Number.isFinite(Number(budget)) || budget > 25000 || budget < 0) {
+    throw Object.assign(new Error('Choose a destination, a valid time window and a budget up to ₹25,000.'), {statusCode: 400});
+  }
+  const pool = venues[city] || await discoverVenues(city);
+  const plans = buildPlans(pool, city, {start, end, budget, interests, area: area.trim().toLowerCase()});
+  const index = ['option1','option2','option3'].indexOf(option);
+  const chosen = plans[Math.max(0,index)];
+  const stops = [...chosen.schedule, ...chosen.rainySchedule];
+  for (const stop of stops) {
+    stop.transfersFrom = Object.fromEntries(stops.filter(p => p.title !== stop.title).map(p => [p.title, transfer(p,stop,budget)]));
+  }
+  const modes = chosen.schedule.slice(1).map((s,i) => s.transfersFrom[chosen.schedule[i].title].mode);
+  return { ...chosen, transport: [...new Set(modes)].join(' + ') || 'Single stop',
+    routes: plans.map(p => ({name:p.name, count:p.schedule.length})) };
+}
+
+async function applyRainyDay(schedule = [], requestedCity) {
+  const city = destination(requestedCity || schedule[0]?.city || '');
+  const pool = venues[city] || await discoverVenues(city);
+  const indoor = pool.filter(p => p.type === 'indoor');
+  const reserved = new Set(schedule.filter(s => s.type === 'indoor').map(s => s.title));
+  return schedule.map(item => {
+    const place = pool.find(p => p.name === item.title);
+    if (item.type === 'indoor') return place ? {...item, ...asStop(place,city)} : item;
+    const candidates = indoor.filter(p => !reserved.has(p.name));
+    if (place) candidates.sort((a,b) => distance(place,a) - distance(place,b));
+    const alternative = candidates[0] || indoor[0];
+    reserved.add(alternative.name);
+    return {...asStop(alternative,city), id:item.id, time:item.time};
+  });
 }
 
 module.exports = { generateTripPlan, applyRainyDay };

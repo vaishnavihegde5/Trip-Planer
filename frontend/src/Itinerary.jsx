@@ -17,6 +17,8 @@ function Itinerary() {
   });
   const [loading, setLoading] = useState(!savedTrip);
   const [isRainy, setIsRainy] = useState(false);
+  const guest = !localStorage.getItem('user') && sessionStorage.getItem('guest') === 'yes';
+  const [routes,setRoutes] = useState([]);
   const [activeOption, setActiveOption] = useState('option1');
 
   const [alternatives, setAlternatives] = useState(null);
@@ -37,7 +39,8 @@ function Itinerary() {
         body: JSON.stringify(payload)
       });
       const data = await response.json();
-      if (!response.ok || !Array.isArray(data.schedule)) throw new Error();
+      if (!response.ok || !Array.isArray(data.schedule)) throw new Error(data.error || "Could not load this route.");
+      setRoutes(data.routes || []);
       setActiveOption(option);
       setAlternatives(data.rainySchedule ? new Map(data.rainySchedule.map(item => [item.id, item])) : null);
       setIsRainy(false);
@@ -52,13 +55,13 @@ function Itinerary() {
             user_id: user.id,
             city: formData.city,
             budget: formData.budget || 0,
-            transport: formData.transport || 'N/A',
+            transport: data.transport,
             schedule: data.schedule
           })
         });
       }
     } catch (err) {
-      setError("We couldn’t load this itinerary. Choose a route to try again.");
+      setError(err.message || "We couldn’t load this itinerary.");
     } finally {
       setLoading(false);
     }
@@ -122,7 +125,7 @@ function Itinerary() {
     <main className="day-guide">
       <header className="guide-nav">
         <button onClick={() => navigate('/plan')}><ArrowLeft size={16}/> Plan a trip</button>
-        <button onClick={() => navigate('/dashboard')}>My trips</button>
+        <button onClick={() => navigate(guest ? '/login' : '/dashboard')}>{guest ? 'Guest · Sign in' : 'My trips'}</button>
       </header>
       <div className="guide-heading">
         <p><MapPin size={15}/> {city}, India</p>
@@ -134,7 +137,7 @@ function Itinerary() {
           <h2>Plan options</h2>
           <div className="route-options">{['option1','option2','option3'].map((option,index) => (
             <button key={option} aria-pressed={activeOption === option} disabled={weatherBusy}
-              onClick={() => fetchPlan(option)}>Route {index + 1}</button>
+              onClick={() => fetchPlan(option)}>{routes[index]?.name || ['Neighbourhood stroll','Culture trail','City sampler'][index]} {routes[index] && <small>{routes[index].count} stops</small>}</button>
           ))}</div>
           <button className="weather-chip weather-control" aria-pressed={isRainy}
             disabled={weatherBusy || !schedule.length} onClick={toggleRainyDay}>
@@ -152,7 +155,9 @@ function Itinerary() {
               <div ref={provided.innerRef} {...provided.droppableProps}>
                 {schedule.map((item,index) => (
                   <Draggable key={item.id} draggableId={String(item.id)} index={index}>{drag => (
-                    <article className="stop-card" ref={drag.innerRef} {...drag.draggableProps}>
+                    <div ref={drag.innerRef} {...drag.draggableProps}>
+                      {index > 0 && item.transfersFrom?.[schedule[index-1].title] && <Leg leg={item.transfersFrom[schedule[index-1].title]}/>}
+                      <article className="stop-card">
                       <div className="stop-meta"><time>{item.time}</time><span>{item.type}</span></div>
                       <div className="stop-content">
                         {item.photoCreditUrl && item.imageUrl && <a className="stop-photo" href={item.photoCreditUrl}
@@ -169,7 +174,7 @@ function Itinerary() {
                         </div>
                       </div>
                       <span className="grip" {...drag.dragHandleProps} aria-label={`Move ${item.title}`}><GripVertical size={18}/></span>
-                    </article>
+                    </article></div>
                   )}</Draggable>
                 ))}
                 {provided.placeholder}
@@ -180,6 +185,10 @@ function Itinerary() {
       </div>
     </main>
   );
+}
+
+function Leg({leg}) {
+  return <p className="leg-note">{leg.mode} · about {leg.minutes} min · {leg.km < .1 ? 'under 0.1' : leg.km.toFixed(1)} km straight-line</p>;
 }
 
 export default Itinerary;

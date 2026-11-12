@@ -1,334 +1,74 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Clock, Wallet, Heart, Car, LogOut, Building, Utensils, TreePine, ShoppingBag, Palette, Moon, Mountain, Camera } from 'lucide-react';
+import { ArrowRight, Check, Compass, MapPin } from 'lucide-react';
 
-const INDIAN_CITIES = ['Mumbai', 'Delhi', 'Bangalore', 'Jaipur', 'Goa', 'Kochi', 'Agra', 'Udaipur'];
-const INTERESTS_DATA = [
-  { name: 'Heritage', icon: '🏛️' },
-  { name: 'Street Food', icon: '🌮' },
-  { name: 'Museums', icon: '🖼️' },
-  { name: 'Nature', icon: '🌲' },
-  { name: 'Shopping', icon: '🛍️' },
-  { name: 'Art', icon: '🎨' },
-  { name: 'Nightlife', icon: '🌃' },
-  { name: 'Adventure', icon: '⛰️' },
+const destinations = [
+  ['Mumbai','Gateway of India','gateway-of-india'], ['Delhi','India Gate','india-gate'],
+  ['Bangalore','Cubbon Park','cubbon-park'], ['Jaipur','Hawa Mahal','hawa-mahal'],
+  ['Goa','Old Goa','basilica-of-bom-jesus'], ['Kochi','Fort Kochi','fort-kochi-beach'],
+  ['Agra','Taj Mahal','taj-mahal'], ['Udaipur','City Palace','city-palace-udaipur']
 ];
-const TRANSPORT_OPTIONS = ['Walking', 'Public Transit', 'Taxi/Rideshare', 'Rental Car'];
+const interestsList = ['Heritage','Museums','Nature','Food','Art','Shopping'];
+const money = value => '₹' + Number(value).toLocaleString('en-IN');
 
-function Wizard() {
-  const [availableInterests, setAvailableInterests] = useState(INTERESTS_DATA);
-  const [step, setStep] = useState(0);
-  const [formData, setFormData] = useState({
-    city: '',
-    area: '',
-    timings: { start: '09:00', end: '20:00' },
-    budget: '',
-    interests: [],
-    customInterest: '',
-    vibe: '',
-    transport: ''
-  });
-  
+export default function Wizard() {
   const navigate = useNavigate();
-
+  const [city,setCity] = useState('');
+  const [area,setArea] = useState('');
+  const [start,setStart] = useState('09:00'), [end,setEnd] = useState('18:00');
+  const [budget,setBudget] = useState(2500);
+  const [interests,setInterests] = useState([]);
+  const [custom,setCustom] = useState('');
+  const [additional,setAdditional] = useState([]);
+  const guest = sessionStorage.getItem('guest') === 'yes' && !localStorage.getItem('user');
   useEffect(() => {
-    const user = localStorage.getItem('user');
-    if (!user) {
-      navigate('/login');
-    }
-  }, [navigate]);
+    if (!guest && !localStorage.getItem('user')) navigate('/login');
+  }, [guest,navigate]);
 
-  const handleNext = () => setStep(prev => prev + 1);
-  const handleBack = () => setStep(prev => prev - 1);
-
-  const handleSubmit = async () => {
-    navigate('/itinerary', { state: { formData } });
-  };
-
-  const handleKeyDown = (e, isValid) => {
-    if (e.key === 'Enter' && isValid) {
-      e.preventDefault();
-      if (step === steps.length - 1) {
-        handleSubmit();
-      } else {
-        handleNext();
-      }
-    }
-  };
-
-  const toggleInterest = (interest) => {
-    setFormData(prev => {
-      const interests = prev.interests.includes(interest)
-        ? prev.interests.filter(i => i !== interest)
-        : prev.interests.length < 5 ? [...prev.interests, interest] : prev.interests;
-      return { ...prev, interests };
-    });
-  };
-
-  const validTimes = formData.timings.start && formData.timings.end > formData.timings.start;
-  const steps = [
-    {
-      id: 'city',
-      title: "Where are we going?",
-      icon: <MapPin size={40} color="#ff8e53" />,
-      content: (
-        <div className="wizard-step">
-          <div className="interest-tags" style={{ justifyContent: 'center' }}>
-            {INDIAN_CITIES.map(c => (
-              <div 
-                key={c} 
-                className={`interest-tag ${formData.city === c ? 'selected' : ''}`}
-                onClick={() => setFormData({...formData, city: c})}
-              >
-                {c}
-              </div>
-            ))}
-          </div>
-          <input 
-            type="text" 
-            className="input-field" 
-            placeholder="Or type another Indian city..." 
-            value={formData.city}
-            onChange={e => setFormData({...formData, city: e.target.value})}
-            style={{ marginBottom: '10px' }}
-          />
-          <input 
-            type="text" 
-            className="input-field" 
-            placeholder="Specific area or neighborhood (optional)..." 
-            value={formData.area}
-            onChange={e => setFormData({...formData, area: e.target.value})}
-            onKeyDown={e => handleKeyDown(e, Boolean(formData.city))}
-          />
-          <button className="btn" onClick={handleNext} disabled={!formData.city}>Next</button>
-        </div>
-      )
-    },
-    {
-      id: 'timings',
-      title: "What are your timings?",
-      icon: <Clock size={40} color="#ff8e53" />,
-      content: (
-        <div className="wizard-step">
-          <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
-            <div style={{ flex: 1 }}>
-              <label style={{ fontSize: '0.9rem', opacity: 0.8 }}>Start Time</label>
-              <input 
-                type="time" 
-                className="input-field" 
-                value={formData.timings.start}
-                onChange={e => setFormData({...formData, timings: {...formData.timings, start: e.target.value}})}
-              />
-            </div>
-            <div style={{ flex: 1 }}>
-              <label style={{ fontSize: '0.9rem', opacity: 0.8 }}>End Time</label>
-              <input 
-                type="time" 
-                className="input-field" 
-                value={formData.timings.end}
-                onChange={e => setFormData({...formData, timings: {...formData.timings, end: e.target.value}})}
-                onKeyDown={e => handleKeyDown(e, validTimes)}
-              />
-            </div>
-          </div>
-          {!validTimes && <p role="alert">Choose an end time after your start time.</p>}
-          <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
-            <button className="btn btn-secondary" onClick={handleBack}>Back</button>
-            <button className="btn" disabled={!validTimes} onClick={handleNext}>Next</button>
-          </div>
-        </div>
-      )
-    },
-    {
-      id: 'budget',
-      title: "What's your budget? (₹)",
-      icon: <Wallet size={40} color="#ff8e53" />,
-      content: (
-        <div className="wizard-step">
-          <div style={{ textAlign: 'center', marginBottom: '1rem', fontSize: '2.5rem', fontWeight: '800', color: '#ea580c' }}>
-            ₹{formData.budget || 100}
-          </div>
-          <input 
-            type="range" 
-            min="100" max="100000" step="100"
-            style={{ width: '100%', marginBottom: '1rem', cursor: 'pointer' }}
-            value={formData.budget || 100}
-            onChange={e => setFormData({...formData, budget: e.target.value})}
-            onKeyDown={e => handleKeyDown(e, true)}
-          />
-          <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginBottom: '2rem' }}>
-            <button className="alt-btn" onClick={() => setFormData({...formData, budget: 1000})}>₹1000</button>
-            <button className="alt-btn" onClick={() => setFormData({...formData, budget: 2500})}>₹2500</button>
-            <button className="alt-btn" onClick={() => setFormData({...formData, budget: 5000})}>₹5000</button>
-          </div>
-          <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
-            <button className="btn btn-secondary" onClick={handleBack}>Back</button>
-            <button className="btn" onClick={handleNext} disabled={!formData.budget && formData.budget !== 0}>Next</button>
-          </div>
-        </div>
-      )
-    },
-    {
-      id: 'interests',
-      title: "Select up to 5 interests",
-      icon: <Heart size={40} color="#ff8e53" />,
-      content: (
-        <div className="wizard-step">
-          <div className="interest-tags">
-            {availableInterests.map(item => (
-              <div 
-                key={item.name} 
-                className={`interest-tag ${formData.interests.includes(item.name) ? 'selected' : ''}`}
-                onClick={() => toggleInterest(item.name)}
-                style={!item.icon ? { padding: '8px 12px', minWidth: 'auto', flex: '0 1 auto', fontSize: '0.9rem' } : {}}
-              >
-                {item.icon && <span style={{ fontSize: '24px' }}>{item.icon}</span>}
-                <span>{item.name}</span>
-              </div>
-            ))}
-          </div>
-          <div style={{ display: 'flex', gap: '10px', width: '100%', alignItems: 'center' }}>
-            <input 
-              type="text" 
-              className="input-field" 
-              placeholder="Add custom interest..." 
-              value={formData.customInterest}
-              onChange={e => setFormData({...formData, customInterest: e.target.value})}
-              onKeyDown={e => {
-                if (e.key === 'Enter') {
-                  e.preventDefault();
-                  if (formData.customInterest && formData.interests.length < 5) {
-                    setFormData(prev => {
-                      const newInterests = prev.interests.includes(prev.customInterest) 
-                        ? prev.interests 
-                        : [...prev.interests, prev.customInterest];
-                      return { ...prev, interests: newInterests, customInterest: '' };
-                    });
-                    if (!availableInterests.find(i => i.name.toLowerCase() === formData.customInterest.toLowerCase())) {
-                      setAvailableInterests(prev => [...prev, { name: formData.customInterest, icon: '' }]);
-                    }
-                  } else if (formData.interests.length > 0) {
-                     handleNext();
-                  }
-                }
-              }}
-              style={{ marginBottom: 0 }}
-            />
-            <button 
-              className="btn" 
-              style={{ marginTop: 0, padding: '15px', borderRadius: '10px', width: 'auto' }}
-              onClick={() => {
-                if (formData.customInterest && formData.interests.length < 5) {
-                  setFormData(prev => {
-                    const newInterests = prev.interests.includes(prev.customInterest) 
-                      ? prev.interests 
-                      : [...prev.interests, prev.customInterest];
-                    return { ...prev, interests: newInterests, customInterest: '' };
-                  });
-                  if (!availableInterests.find(i => i.name.toLowerCase() === formData.customInterest.toLowerCase())) {
-                    setAvailableInterests(prev => [...prev, { name: formData.customInterest, icon: '' }]);
-                  }
-                }
-              }}
-            >
-              Add
-            </button>
-          </div>
-          <p style={{ margin: '10px 0', fontSize: '0.9rem', opacity: 0.8 }}>
-            Selected: {formData.interests.length}/5
-          </p>
-          <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
-            <button className="btn btn-secondary" onClick={handleBack}>Back</button>
-            <button className="btn" onClick={handleNext} disabled={formData.interests.length === 0}>Next</button>
-          </div>
-        </div>
-      )
-    },
-    {
-      id: 'vibe',
-      title: "What's your travel vibe?",
-      icon: <Palette size={40} color="#ff8e53" />,
-      content: (
-        <div className="wizard-step">
-          <div className="interest-tags" style={{ justifyContent: 'center' }}>
-            {['Relaxed', 'Adventure', 'Cultural'].map(option => (
-              <div 
-                key={option} 
-                className={`interest-tag ${formData.vibe === option.toLowerCase() ? 'selected' : ''}`}
-                onClick={() => setFormData({...formData, vibe: option.toLowerCase()})}
-              >
-                {option}
-              </div>
-            ))}
-          </div>
-          <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
-            <button className="btn btn-secondary" onClick={handleBack}>Back</button>
-            <button className="btn" onClick={handleNext} disabled={!formData.vibe}>Next</button>
-          </div>
-        </div>
-      )
-    },
-    {
-      id: 'transport',
-      title: "How are you getting around?",
-      icon: <Car size={40} color="#ff8e53" />,
-      content: (
-        <div className="wizard-step">
-          <div className="interest-tags" style={{ justifyContent: 'center' }}>
-            {TRANSPORT_OPTIONS.map(option => (
-              <div 
-                key={option} 
-                className={`interest-tag ${formData.transport === option ? 'selected' : ''}`}
-                onClick={() => setFormData({...formData, transport: option})}
-              >
-                {option}
-              </div>
-            ))}
-          </div>
-          <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
-            <button className="btn btn-secondary" onClick={handleBack}>Back</button>
-            <button className="btn" onClick={handleSubmit} disabled={!formData.transport}>Plan My Trip!</button>
-          </div>
-        </div>
-      )
-    }
-  ];
-
-  return (
-    <div className="app-container">
-      <div style={{ position: 'absolute', top: '20px', right: '20px', zIndex: 10, display: 'flex', gap: '10px' }}>
-        <button className="btn btn-secondary" style={{ marginTop: 0, padding: '8px 16px', fontSize: '0.9rem' }} onClick={() => navigate('/dashboard')}>My Trips</button>
-        <button className="btn btn-secondary" style={{ marginTop: 0, padding: '8px 16px', fontSize: '0.9rem' }} onClick={() => { localStorage.removeItem('user'); navigate('/login'); }}>
-          <LogOut size={16} /> Sign Out
-        </button>
-      </div>
-      <motion.div 
-        className="glass-card"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
-          {steps[step].icon}
-        </div>
-        <h1 className="title">{steps[step].title}</h1>
-        <p className="subtitle">Step {step + 1} of {steps.length}</p>
-        
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={step}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.3 }}
-          >
-            {steps[step].content}
-          </motion.div>
-        </AnimatePresence>
-      </motion.div>
-    </div>
-  );
+  function toggle(name) {
+    setInterests(current => current.includes(name) ? current.filter(i => i !== name) : [...current,name].slice(0,5));
+  }
+  function addInterest() {
+    const name = custom.trim();
+    if (!name || interests.length >= 5) return;
+    const existing = [...interestsList,...additional].find(i => i.toLowerCase() === name.toLowerCase());
+    if (!existing) setAdditional([...additional,name]);
+    if (!interests.includes(existing || name)) setInterests([...interests,existing || name]);
+    setCustom('');
+  }
+  function submit(event) {
+    event.preventDefault();
+    if (!city.trim() || !start || end <= start) return;
+    navigate('/itinerary',{state:{formData:{city:city.trim(),area:area.trim(),timings:{start,end},budget,interests}}});
+  }
+  return <main className="planner-page">
+    <header className="guide-nav"><span className="wordmark"><Compass/> Smart Trip Planner</span>
+      <button onClick={() => navigate(guest ? '/login':'/dashboard')}>{guest ? 'Guest · Sign in':'My trips'}</button></header>
+    <div className="planner-intro"><h1>Plan your <em>day out.</em></h1><p>Pick a destination and we’ll put together three nearby routes for your day.</p></div>
+    <form onSubmit={submit} className="planner-form">
+      <section className="selection-panel"><h2>Destination</h2>
+        <div className="destination-grid">{destinations.map(([name,area,photo]) => <button key={name} type="button" aria-pressed={city === name}
+          onClick={() => setCity(name)}><img src={'/places/'+photo+'.webp'} alt=""/><span><strong>{name}</strong><small>{area}</small></span>
+          {city === name && <Check size={17}/>}</button>)}</div>
+        <div className="field-grid"><label>City or another Indian destination<input required value={city} onChange={e => setCity(e.target.value)} placeholder="Enter a city"/></label>
+        <label>Preferred neighbourhood <small>(optional)</small><input value={area} onChange={e => setArea(e.target.value)} placeholder="e.g. Old City"/></label></div>
+      </section>
+      <section className="selection-panel"><h2>Your day</h2><div className="field-grid"><label>Start time<input type="time" required value={start} onChange={e => setStart(e.target.value)}/></label>
+        <label>Finish by<input type="time" required value={end} onChange={e => setEnd(e.target.value)}/></label></div>
+        {end <= start && <p role="alert">Choose a finish time after your start time.</p>}
+        <div className="budget-heading"><label htmlFor="trip-budget">Day budget</label><output htmlFor="trip-budget">{money(budget)}</output></div>
+        <input id="trip-budget" className="budget-range" type="range" min="100" max="25000" step="100" value={budget}
+          aria-valuetext={money(budget)} style={{'--fill':((budget-100)/24900)*100+'%'}} onChange={e => setBudget(Number(e.target.value))}/>
+        <div className="range-ends"><span>₹100</span><span>₹25,000</span></div>
+        <div className="pick-chips">{[1000,2500,5000,10000,25000].map(n => <button key={n} type="button" aria-pressed={n===budget} onClick={() => setBudget(n)}>{money(n)}</button>)}</div>
+      </section>
+      <section className="selection-panel"><div className="selection-title"><h2>Your interests</h2><span>{interests.length} / 5</span></div>
+        <div className="pick-chips">{[...interestsList,...additional].map(name => <button type="button" key={name} aria-pressed={interests.includes(name)}
+          disabled={interests.length===5 && !interests.includes(name)} onClick={() => toggle(name)}>{interests.includes(name) && <Check size={14}/>} {name}</button>)}</div>
+        <div className="custom-interest"><input aria-label="Custom interest" value={custom} placeholder="Add another interest" onChange={e => setCustom(e.target.value)}
+          onKeyDown={e => {if(e.key==='Enter'){e.preventDefault();addInterest();}}}/><button type="button" disabled={!custom.trim() || interests.length===5} onClick={addInterest}>Add</button></div>
+      </section>
+      <div className="plan-submit"><span><MapPin size={16}/> Travel mode is suggested for each leg.</span><button className="cover-action" disabled={!city.trim() || !start || !end || end <= start}>Build my routes <ArrowRight size={18}/></button></div>
+    </form>
+  </main>;
 }
-
-export default Wizard;

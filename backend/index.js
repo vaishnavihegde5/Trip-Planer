@@ -20,16 +20,20 @@ app.get('/api/test', async (req, res) => {
 
 const { generateTripPlan, applyRainyDay } = require('./planner');
 
-app.post('/api/plan', (req, res) => {
+app.post('/api/plan', async (req, res) => {
   try {
-    res.json(generateTripPlan(req.body));
+    res.json(await generateTripPlan(req.body));
   } catch (error) {
     res.status(error.statusCode || 500).json({ error: error.message });
   }
 });
 
-app.post('/api/plan/rainy-day', (req, res) => {
-  res.json({ schedule: applyRainyDay(req.body.schedule, req.body.city) });
+app.post('/api/plan/rainy-day', async (req, res) => {
+  try {
+    res.json({ schedule: await applyRainyDay(req.body.schedule, req.body.city) });
+  } catch (error) {
+    res.status(error.statusCode || 500).json({error: error.message});
+  }
 });
 
 app.post('/api/auth', async (req, res) => {
@@ -92,7 +96,7 @@ app.delete('/api/itineraries/:id', async (req, res) => {
 // Serve frontend static files in production
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../frontend/dist')));
-  app.get('*', (req, res) => {
+  app.get('/{*path}', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html'));
   });
 }
