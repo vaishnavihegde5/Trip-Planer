@@ -18,13 +18,6 @@
       }
     },
     {
-      "source": "/:page(login|plan|itinerary|dashboard)",
-      "destination": {
-        "service": "frontend",
-        "path": "/index.html"
-      }
-    },
-    {
       "source": "/(.*)",
       "destination": {
         "service": "frontend"
