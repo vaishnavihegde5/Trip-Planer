@@ -1,0 +1,48 @@
+name: Record Vercel production deployment
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  statuses: read
+
+concurrency:
+  group: production-deployment-record
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Wait for this commit's Vercel production check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in {1..50}; do
+            state=$(gh api "repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/status" --jq '[.statuses[] | select(.context == "Vercel" and (.target_url // "" | startswith("https://vercel.com/vaishnavihegde5s-projects/trip-planer/")))] | first | .state // "pending"')
+            case "$state" in
+              success) exit 0 ;;
+              error|failure) exit 1 ;;
+            esac
+            sleep 10
+          done
+          exit 1
+
+  record:
+    needs: verify
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: Production
+      url: https://thetriplaner.vercel.app
+    steps:
+      - name: Check the public planner
+        run: |
+          set -eo pipefail
+          curl --fail --silent --show-error --location --max-time 30 https://thetriplaner.vercel.app/ | grep -F '<title>Smart Trip Planner</title>'
