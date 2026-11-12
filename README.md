@@ -1,6 +1,6 @@
 # Smart Trip Planner
 
-Plan a day in India with photographed stops, suggested visit times, and three routes built around your interests and the time you have. [Open the live planner](https://thetriplaner.vercel.app/)
+Plan a day in India with photographed stops, suggested visit times, and three routes built around your interests and the time you have.
 
 ## Try a trip
 
