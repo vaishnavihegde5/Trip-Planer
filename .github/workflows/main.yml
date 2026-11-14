@@ -1,0 +1,14 @@
+name: Production Deployment
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: Production
+      url: https://thetriplaner.vercel.app
+    steps:
+      - run: echo "Deployed to Production"
